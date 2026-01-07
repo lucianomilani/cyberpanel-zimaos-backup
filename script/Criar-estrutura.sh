@@ -1,4 +1,4 @@
-Execute este bloco no terminal do CyberPanel:
+# Execute este bloco no terminal do CyberPanel:
 
 # 1. Criar a pasta de organização
 mkdir -p /root/scripts-backup
