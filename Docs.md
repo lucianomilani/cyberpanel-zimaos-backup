@@ -1,4 +1,4 @@
-# 🛡️ Sistema de Backup Especializado: CyberPanel para ZimaOS
+# 🛡️ Sistema de Backup Especializado: CyberPanel para ZimaOS/CasaOS
 
 Sistema automatizado de backup "Full Stack" (Arquivos + SQL) desenhado para superar as limitações do motor nativo do CyberPanel, com suporte nativo para aplicações WordPress e Moodle.
 
@@ -12,7 +12,7 @@ O script realiza a identificação dinâmica de bases de dados, compactação de
 * **Retenção Remota Inteligente**: 
     * Mantém os últimos **14 dias** de backups diários.
     * Preserva automaticamente o **backup do dia 01** de cada mês como arquivo histórico permanente.
-* **Transferência Segura**: Sincronização via Rsync sobre SSH (Porta 2993).
+* **Transferência Segura**: Sincronização via Rsync sobre SSH (Porta XXXXX).
 
 ## 🛠️ Estrutura de Ficheiros
 * `backup_remoto_expert.sh`: Script principal de automação (localizado em `/usr/local/bin/`).
@@ -22,7 +22,7 @@ O script realiza a identificação dinâmica de bases de dados, compactação de
 ## ⚙️ Configuração do Fluxo
 
 ### 1. Requisitos
-* Chave SSH pública do servidor Web autorizada no ZimaOS (`authorized_keys`).
+* Chave SSH pública do servidor Web autorizada no ZimaOS/CasaOS (`authorized_keys`).
 * Ficheiro `.my.cnf` formatado corretamente com grupos `[client]` e `[mysqldump]`.
 
 ### 2. Automação (Cron)
