@@ -12,10 +12,13 @@ O script realiza a identificação dinâmica de bases de dados, compactação de
 * **Retenção Remota Inteligente**: 
     * Mantém os últimos **14 dias** de backups diários.
     * Preserva automaticamente o **backup do dia 01** de cada mês como arquivo histórico permanente.
-* **Transferência Segura**: Sincronização via Rsync sobre SSH (Porta XXXXX).
+* **Transferência Segura**: Sincronização via Rsync sobre SSH (Porta 2993).
+
+
 
 ## 🛠️ Estrutura de Ficheiros
-* `backup_remoto_expert.sh`: Script principal de automação (localizado em `/usr/local/bin/`).
+* `backup_remoto_expert.sh`: Script principal de automação (localizado em `/root/scripts-backup/`).
+* `/usr/local/bin/backup_remoto_expert.sh`: Link simbólico para execução global.
 * `/root/.my.cnf`: Ficheiro de credenciais MySQL para exportação segura sem prompts de password.
 * `/var/log/backup_custom.log`: Registo de logs para auditoria.
 
