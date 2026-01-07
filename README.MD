@@ -7,3 +7,8 @@ Este script automatiza o backup de ficheiros e bases de dados (WordPress/Moodle)
 3. Envio via Rsync (Porta 2993).
 4. Retenção de 14 dias + 1 Mensal no destino.
 5. Retenção de 7 dias no servidor CyberPanel
+
+## Apoio
+
+Ver istruções no Docs
+Script de apoio e script de execução na pasta scripts
