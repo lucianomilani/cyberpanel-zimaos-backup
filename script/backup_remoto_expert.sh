@@ -2,11 +2,11 @@ cat << 'EOF' > /usr/local/bin/backup_remoto_expert.sh
 #!/bin/bash
 
 # --- CONFIGURAÇÕES ---
-DESTINO_IP="techx.es"
-DESTINO_USER="lmilani"
-DESTINO_PORTA="2993"
+DESTINO_IP="SEU-IP-DESTINO"
+DESTINO_USER="USER-DESTINO"
+DESTINO_PORTA="XXXXX"
 PASTA_LOCAL="/home/backup"
-PASTA_DESTINO_REMOTO="/media/storage_8tb/b4s/net"
+PASTA_DESTINO_REMOTO="/PASTA/DESTINO/NOME"
 DATA_ATUAL=$(date +%Y-%m-%d)
 
 echo "[$(date)] --- INICIANDO BACKUP UNIVERSAL (WP + MOODLE + CP) ---"
@@ -60,12 +60,12 @@ for dominio in $SITES; do
     fi
 done
 
-# --- 6. ENVIO PARA ZIMAOS ---
+# --- 6. ENVIO PARA ZIMAOS/CASAOS ---
 echo "[$(date)] Enviando para ZimaOS..."
 ssh -p $DESTINO_PORTA $DESTINO_USER@$DESTINO_IP "mkdir -p $PASTA_DESTINO_REMOTO/$DATA_ATUAL"
 rsync -avz --include="backup-*.tar.gz" --exclude="*" -e "ssh -p $DESTINO_PORTA" $PASTA_LOCAL/ $DESTINO_USER@$DESTINO_IP:$PASTA_DESTINO_REMOTO/$DATA_ATUAL/
 
-# --- 7. RETENÇÃO NO ZIMAOS (14 DIAS + 1 MENSAL) ---
+# --- 7. RETENÇÃO NO ZIMAOS/CASAOS (14 DIAS + 1 MENSAL) ---
 echo "[$(date)] Aplicando retenção inteligente no ZimaOS..."
 ssh -p $DESTINO_PORTA $DESTINO_USER@$DESTINO_IP "find $PASTA_DESTINO_REMOTO/* -maxdepth 0 -type d -mtime +14 ! -name '*-*-01' -exec rm -rf {} +"
 
@@ -76,5 +76,3 @@ find $PASTA_LOCAL -type d -name "01.*" -mtime +7 -exec rm -rf {} +
 
 echo "[$(date)] --- PROCESSO CONCLUÍDO COM SUCESSO ---"
 EOF
-
-chmod +x /usr/local/bin/backup_remoto_expert.sh
