@@ -13,8 +13,8 @@ TELEGRAM_CHAT_ID="SEU_CHAT_ID_AQUI"
 # --- 2. CONFIGURAÇÕES DE ACESSO REMOTO ---
 DESTINO_IP="seu.dominio.ou.ip"
 DESTINO_USER="seu_utilizador"
-DESTINO_PORTA="2993"
-PASTA_DESTINO_REMOTO="/media/storage_8tb/TechX/alpha"
+DESTINO_PORTA="2XXX"
+PASTA_DESTINO_REMOTO="/media/storage/XXXXXX"
 
 # --- 3. CONFIGURAÇÕES LOCAIS ---
 PASTA_LOCAL="/home/backup"
