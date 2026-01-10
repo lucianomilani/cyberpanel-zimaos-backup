@@ -24,3 +24,36 @@ Escolhe o script adequado ao teu painel e guarda-o em `/usr/local/bin/`.
 ```bash
 wget [https://raw.githubusercontent.com/lucianomilani/cyberpanel-zimaos-backup/main/report_cyberpanel.sh](https://raw.githubusercontent.com/lucianomilani/cyberpanel-zimaos-backup/main/report_cyberpanel.sh) -O /usr/local/bin/report_cyberpanel.sh
 chmod +x /usr/local/bin/report_cyberpanel.sh
+Para CloudPanel:
+
+Bash
+
+wget [https://raw.githubusercontent.com/lucianomilani/cyberpanel-zimaos-backup/main/report_cloudpanel.sh](https://raw.githubusercontent.com/lucianomilani/cyberpanel-zimaos-backup/main/report_cloudpanel.sh) -O /usr/local/bin/report_cloudpanel.sh
+chmod +x /usr/local/bin/report_cloudpanel.sh
+3. Configurar Variáveis
+Edita o script escolhido e insere as tuas credenciais:
+
+Bash
+
+TOKEN="O_TEU_BOT_TOKEN"
+CHAT_ID="O_TEU_CHAT_ID"
+⏰ Agendamento (Cron)
+Para receber o relatório todos os domingos às 09:00, adiciona a seguinte linha ao teu crontab (crontab -e):
+
+CyberPanel:
+
+Fragmento do código
+
+00 09 * * 0 /usr/local/bin/report_cyberpanel.sh > /dev/null 2>&1
+CloudPanel:
+
+Fragmento do código
+
+00 09 * * 0 /usr/local/bin/report_cloudpanel.sh > /dev/null 2>&1
+🛠️ Integração com ZimaOS
+Os scripts foram desenhados para funcionar com o ZimaOS via SFTP na porta personalizada (ex: 2993). Certifica-te de que a chave SSH do servidor está autorizada no ZimaOS para um fluxo 100% automatizado.
+
+📄 Licença
+Distribuído sob a licença MIT. Veja LICENSE para mais informações.
+
+Desenvolvido por Luciano Milani
