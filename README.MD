@@ -36,11 +36,11 @@ Bash
 🛠️ Configuração ZimaOS (SFTP)
 Os scripts validam o envio para o storage configurado em:
 
-Host: techx.es
+Host: seu host
 
-Port: 2993
+Port: 2XXX
 
-Path: /media/storage_8tb/TechX/
+Path: /media/storage/point
 
 Repo: lucianomilani/cyberpanel-zimaos-backup
 
