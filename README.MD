@@ -1,54 +1,31 @@
-🛡️ Unified Backup Monitor (CyberPanel & CloudPanel)
-Script leve para monitorizar a integridade dos backups e enviar relatórios formatados para o Telegram. Otimizado para storage remoto via SFTP (ZimaOS).
+Sistema de Backup Especializado: CyberPanel para ZimaOS/CasaOS
+Sistema automatizado de backup "Full Stack" (Arquivos + SQL) desenhado para superar as limitações do motor nativo do CyberPanel, com suporte nativo para aplicações WordPress e Moodle.
 
-🚀 Como Instalar
-1. Descarregar o Script
-Escolha o comando de acordo com o seu painel:
+📋 Visão Geral
 
-Para CloudPanel:
+O script realiza a identificação dinâmica de bases de dados, compactação de ficheiros e sincronização remota com política de retenção inteligente.
 
-Bash
+🚀 Funcionalidades
 
-curl -o /usr/local/bin/backup_report.sh https://raw.githubusercontent.com/lucianomilani/cyberpanel-zimaos-backup/main/report_cloudpanel.sh
-Para CyberPanel:
+Deteção Universal de DB: Localiza bases de dados lendo diretamente o wp-config.php (WordPress) ou config.php (Moodle).
+Backup Atómico: Cada site é empacotado individualmente com a sua respectiva base de dados SQL.
+Retenção Local (7 Dias): Auto-limpeza do armazenamento local para evitar saturação do disco SSD.
+Retenção Remota Inteligente:
+Mantém os últimos 14 dias de backups diários.
+Preserva automaticamente o backup do dia 01 de cada mês como arquivo histórico permanente.
+Transferência Segura: Sincronização via Rsync sobre SSH (Porta 2993).
 
-Bash
+🛠️ Estrutura de Ficheiros
 
-curl -o /usr/local/bin/backup_report.sh https://raw.githubusercontent.com/lucianomilani/cyberpanel-zimaos-backup/main/report_cyberpanel.sh
-2. Configurar e Dar Permissão
-Edite o ficheiro para inserir o seu Token e ChatID do Telegram:
+backup_remoto_expert.sh: Script principal de automação (localizado em /root/scripts-backup/).
+/usr/local/bin/backup_remoto_expert.sh: Link simbólico para execução global.
+/root/.my.cnf: Ficheiro de credenciais MySQL para exportação segura sem prompts de password.
+/var/log/backup_custom.log: Registo de logs para auditoria.
 
-Bash
+⚙️ Configuração do Fluxo
 
-nano /usr/local/bin/backup_report.sh
-chmod +x /usr/local/bin/backup_report.sh
-3. Agendar no Cron
-Configure para correr todos os domingos às 09:00:
-
-Bash
-
-(crontab -l 2>/dev/null; echo "00 09 * * 0 /usr/local/bin/backup_report.sh > /dev/null 2>&1") | crontab -
-📊 Exemplo do Relatório
-🤖 Relatório de Integridade: Servidor-Alpha
-
-📌 ESTADO: 🟢 SAUDÁVEL ℹ️ Detalhe: Backup confirmado via arquivo físico. 📝 Evidência: backup_site_2026.tar.gz 📍 Destino: ZimaOS (TechX Storage)
-
-🛠️ Configuração ZimaOS (SFTP)
-Os scripts validam o envio para o storage configurado em:
-
-Host: seu host
-
-Port: 2XXX
-
-Path: /media/storage/point
-
-Repo: lucianomilani/cyberpanel-zimaos-backup
-
-O que mudou?
-Nome Único: Sugeri usar backup_report.sh no destino para facilitar os comandos, independentemente do painel.
-
-Instalação via CURL: Mais limpo e moderno.
-
-Sem "Encheção de chouriço": Focado apenas na execução.
-
-Era esta estrutura mais "limpa" que pretendia? Se sim, pode copiar exatamente o que está entre as linhas tracejadas para o seu GitHub.
+1. Requisitos
+Chave SSH pública do servidor Web autorizada no ZimaOS/CasaOS (authorized_keys).
+Ficheiro .my.cnf formatado corretamente com grupos [client] e [mysqldump].
+2. Automação (Cron)
+O script está configurado para execução diária às 03:00 AM:
